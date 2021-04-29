@@ -1,0 +1,155 @@
+---
+title: "Proescholdt_Thesis_Markdown"
+author: "Toni Proescholdt"
+date: "4/29/2021"
+output: html_document
+---
+
+This Markdown serves as my submission for Assignment 6 in
+WILD6900: Computational Tools for Reproducible Science
+Professor: Dr. Simona Picardi
+
+In this document I will detail my project database.
+
+```{r setup, include = TRUE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+#First, I will install and load packages.
+
+#install.packages("RSQLite")
+#install.packages("DBI")
+library(DBI)
+
+#Then I will establish a database connection.
+
+sheep <- dbConnect(drv = RSQLite::SQLite(), 
+                   "../WILD6900_Comp-Tools/sheep.db")
+
+```
+
+## Database Layout
+
+Now that I have a database connection set up, I will build my database through tables in the structure based on the layout below.
+
+```{r layout, fig.cap="Database layout", fig.align='center', eval=TRUE, out.width='100%'}
+knitr::include_graphics("Database_layout.png")
+```
+
+Now I will create and fill my tables within the database, using the help of information from our class website:  <https://ecorepsci.github.io/reproducible-science/rsqlite.html>.
+
+
+I will build a table via RSQLite for each table in my design.
+
+```{r build tables, echo = TRUE, eval = FALSE}
+#make table for individuals
+dbExecute(sheep, "CREATE TABLE individuals (
+name varchar(30) NOT NULL,
+id_number varchar(8),
+sex char(1) CHECK (sex IN ('M', 'F')),
+year_born char(4),
+year_death char(4),
+mother_idno varchar(8),
+father_idno varchar(8),
+PRIMARY KEY (name)
+);")
+
+#Make table for Fecal Samples
+dbExecute(sheep, "CREATE TABLE fecal (
+sample_id varchar(10),
+name varchar(30) NOT NULL,
+date varchar(8),
+time varchar(5),
+PRIMARY KEY (name)
+);")
+
+#Make table for vigilance observations
+dbExecute(sheep, "CREATE TABLE vigilance (
+observation_id varchar(10),
+name varchar(30) NOT NULL,
+date varchar(8),
+time varchar(5),
+PRIMARY KEY (name)
+);")
+
+#Make table for all observers
+dbExecute(sheep, "CREATE TABLE observers (
+observer_id varchar(4),
+full_name char(30)
+initials char(3),
+year_start (4),
+year_stop (4),
+PRIMARY KEY (observer_id)
+);")
+
+#Make table for census data
+dbExecute(sheep, "CREATE TABLE census (
+group_record_id varchar(6),
+observed-group_no varchar(3) NOT NULL,
+date varchar(8),
+time varchar(4),
+PRIMARY KEY (group_record_id)
+);")
+
+#Make table for Group Locations
+dbExecute(sheep, "CREATE TABLE group_locations (
+location_id varchar(10),
+group_record_id varchar(6),
+map varchar(10) NOT NULL,
+latitude varchar(8),
+longitude varchar(8),
+PRIMARY KEY (group_record_id)
+);")
+
+#Make table for Group Composition
+dbExecute(sheep, "CREATE TABLE group_composition (
+observation_id varchar(10),
+group_record_id varchar(6),
+name varchar(30),
+lamb_status varchar(5),
+PRIMARY KEY (group_record_id)
+PRIMARY KEY (name)
+);")
+
+```
+
+## Importing Data
+
+Now that I have all of my tables built, I will import my data into them.
+
+```{r import data, echo = TRUE, eval = FALSE}
+#Bring in data
+individuals <- read.csv("tables/Individuals.csv")
+head(individuals)
+names(individuals)[2] <- "id_number"
+
+#Fill table
+dbWriteTable(sheep, "individuals", individuals, append = TRUE)
+
+#Check that it worked
+dbGetQuery(conn = sheep, 
+           statement = "SELECT *
+           FROM individuals
+           LIMIT 10")
+
+#Bring in data
+fecal_full <- read.csv("tables/NBR Fecal Samples Fall 2019.csv")
+fecal <- fecal_full[ , c(5, 3, 1, 2)]
+
+#Change names
+names(fecal)[1] <- "sample_id"
+names(fecal)[2] <- "name"
+names(fecal)[3] <- "date"
+names(fecal)[4] <- "time"
+
+#Fill table
+dbWriteTable(sheep, "fecal", fecal, overwrite = TRUE)
+
+#Check that it worked
+dbGetQuery(conn = sheep, 
+           statement = "SELECT *
+           FROM fecal
+           LIMIT 10")
+
+```
+
+This assignment shows my work flow for building my database and getting used to Rmarkdown. The assignment, along with my Assignment 7 bookdown, build to the final project.
