@@ -1,0 +1,46 @@
+--- 
+title: "Proescholdt Thesis Bookdown"
+author: "Toni Proescholdt"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This bookdown serves as my submission for the final project in WILD6900 for Dr. Simona Picardi. The output format for this example is bookdown::gitbook."
+---
+
+# Introduction
+
+This book is for my master's thesis. I will submit a version of it as my final project for Dr. Simona Picardi's course WILD6900 at Utah State University in the Spring semester of 2021. I will continue to use it and add to it as I work on my project.
+
+## The Dataset
+
+I am analyzing data from a long-term study on bighorn sheep at the Bison Range in western Montana. 
+This study was started by Dr. Jack Hogg in 1979 and has been running ever since. 
+Dr. Hogg established identifying marks for each individual in the population. He has collected behavioral, location, and group composition data (and more!) from this herd over these last 40 years.
+
+```{r sheep pic, fig.cap="Rug and Yaya on the Bison Range", fig.align='center', eval = TRUE, echo = FALSE, out.width='100%'}
+knitr::include_graphics("../../RUG_YAY.jpg")
+
+```
+
+## My Thesis
+
+I am using this dataset to study the fission-fusion dynamics of this population of bighorn sheep.
+
+### Thesis Abstract
+
+Social species can be described by the degree to which they display fission-fusion dynamics through variation in three dimensions: group size, composition, and spatial cohesion. These factors directly affect social structure of a population, but they are complex, infrequently measured in the wild, and rarely linked to underlying social processes such as relatedness or shared life stage. Identifying the critical processes that shape female social structure and fission-fusion dynamics is an important step toward accurately forecasting how animals interact and spread disease. Here, I propose a master’s thesis to estimate fission-fusion dimensions and link fission-fusion events to social processes and fitness outcomes using a long-term, individual-level dataset on bighorn sheep from the Bison Range in Montana. In Chapter 1, I will examine the variance in group composition, group size, and group spatial cohesion and assess whether aspects of those variances can be systematically explained by changes in population size, age, or sex structure. I will then compare the rates of fission and fusion events to learn which appears to drive the bulk of group composition change. In Chapter 2, I will model group switching choices as a function of social covariates through a discrete choice model. The discrete choice model will contrast conditions such as pedigree, cohort, reproductive status, and group size preference in an animal's chosen group to conditions on all other groups detected that day. Finally, I will investigate the immediate fitness implications of fission-fusion events by tallying the times that a fission or fusion event corresponds with the date an animal was last seen alive. In this proposal, I will describe project objectives and hypotheses, as well as some preliminary findings derived from early data exploration.
+
+## This Book
+
+Section \@ref(build) is about making the database itself. This includes setting up the database tables and filling those tables with data.
+
+Section \@ref(parents) explores parentage of this population to see how many lambs the most successful parents had.
+
+Section \@ref(grp_size) investigates aspects of group size, like how big the biggest groups were, when did the biggest groups occur, and what is the mean and mode group size.
+
+```{r range pic, fig.cap="The Bison Range", fig.align='center', eval = TRUE, echo = FALSE, out.width='100%'}
+knitr::include_graphics("../../BR.jpg")
+```

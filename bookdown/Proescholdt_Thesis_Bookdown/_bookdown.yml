@@ -1,0 +1,6 @@
+book_filename: "Proescholdt_Thesis_Bookdown"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Section "
+output_dir: "../../docs"

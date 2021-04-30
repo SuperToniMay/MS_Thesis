@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 2 Building the Database | Proescholdt Thesis Bookdown</title>
+  <meta name="description" content="This bookdown serves as my submission for the final project in WILD6900 for Dr. Simona Picardi. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 2 Building the Database | Proescholdt Thesis Bookdown" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This bookdown serves as my submission for the final project in WILD6900 for Dr. Simona Picardi. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 2 Building the Database | Proescholdt Thesis Bookdown" />
+  
+  <meta name="twitter:description" content="This bookdown serves as my submission for the final project in WILD6900 for Dr. Simona Picardi. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Toni Proescholdt" />
+
+
+<meta name="date" content="2021-04-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="parents.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Proescholdt Thesis Bookdown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-dataset"><i class="fa fa-check"></i><b>1.1</b> The Dataset</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#my-thesis"><i class="fa fa-check"></i><b>1.2</b> My Thesis</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#thesis-abstract"><i class="fa fa-check"></i><b>1.2.1</b> Thesis Abstract</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#this-book"><i class="fa fa-check"></i><b>1.3</b> This Book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="build.html"><a href="build.html"><i class="fa fa-check"></i><b>2</b> Building the Database</a><ul>
+<li class="chapter" data-level="2.1" data-path="build.html"><a href="build.html#database-design"><i class="fa fa-check"></i><b>2.1</b> Database Design</a></li>
+<li class="chapter" data-level="2.2" data-path="build.html"><a href="build.html#building-the-tables"><i class="fa fa-check"></i><b>2.2</b> Building the Tables</a></li>
+<li class="chapter" data-level="2.3" data-path="build.html"><a href="build.html#importing-data"><i class="fa fa-check"></i><b>2.3</b> Importing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="parents.html"><a href="parents.html"><i class="fa fa-check"></i><b>3</b> Exploring Parentage</a></li>
+<li class="chapter" data-level="4" data-path="grp-size.html"><a href="grp-size.html"><i class="fa fa-check"></i><b>4</b> Group Size</a></li>
+<li class="chapter" data-level="5" data-path="population.html"><a href="population.html"><i class="fa fa-check"></i><b>5</b> Population</a><ul>
+<li class="chapter" data-level="5.1" data-path="population.html"><a href="population.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
+<li class="chapter" data-level="5.2" data-path="population.html"><a href="population.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Proescholdt Thesis Bookdown</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="build" class="section level1">
+<h1><span class="header-section-number">Section 2</span> Building the Database</h1>
+<p>This Markdown served as my submission for Assignment 6 in
+WILD6900: Computational Tools for Reproducible Science
+Professor: Dr. Simona Picardi.
+It is also an integral part of my final project.</p>
+<p>In this document I will detail my project database.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="build.html#cb1-1"></a>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>, <span class="dt">eval =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb1-2"><a href="build.html#cb1-2"></a></span>
+<span id="cb1-3"><a href="build.html#cb1-3"></a><span class="co">#First, I will install and load packages.</span></span>
+<span id="cb1-4"><a href="build.html#cb1-4"></a></span>
+<span id="cb1-5"><a href="build.html#cb1-5"></a><span class="co">#install.packages(&quot;RSQLite&quot;)</span></span>
+<span id="cb1-6"><a href="build.html#cb1-6"></a><span class="co">#install.packages(&quot;DBI&quot;)</span></span>
+<span id="cb1-7"><a href="build.html#cb1-7"></a><span class="kw">library</span>(DBI)</span>
+<span id="cb1-8"><a href="build.html#cb1-8"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.0.6     v dplyr   1.0.5
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="build.html#cb5-1"></a><span class="co">#Then I will establish a database connection.</span></span>
+<span id="cb5-2"><a href="build.html#cb5-2"></a></span>
+<span id="cb5-3"><a href="build.html#cb5-3"></a>sheep &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> RSQLite<span class="op">::</span><span class="kw">SQLite</span>(), </span>
+<span id="cb5-4"><a href="build.html#cb5-4"></a>                   <span class="st">&quot;../../../WILD6900_Comp-Tools/sheep.db&quot;</span>)</span></code></pre></div>
+<div id="database-design" class="section level2">
+<h2><span class="header-section-number">2.1</span> Database Design</h2>
+<p>Now that I have a database connection set up, I will build my database through tables in the structure based on the design below.</p>
+<div class="figure" style="text-align: center"><span id="fig:layout"></span>
+<img src="../Database_layout.png" alt="Database layout" width="100%" />
+<p class="caption">
+Figure 2.1: Database layout
+</p>
+</div>
+</div>
+<div id="building-the-tables" class="section level2">
+<h2><span class="header-section-number">2.2</span> Building the Tables</h2>
+<p>Now I will create and fill my tables within the database, using the help of information from our class website: <a href="https://ecorepsci.github.io/reproducible-science/rsqlite.html" class="uri">https://ecorepsci.github.io/reproducible-science/rsqlite.html</a>.</p>
+<p>I will build a table via RSQLite for each table in my design.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="build.html#cb6-1"></a><span class="co">#make table for individuals</span></span>
+<span id="cb6-2"><a href="build.html#cb6-2"></a><span class="kw">dbExecute</span>(sheep, <span class="st">&quot;CREATE TABLE individuals (</span></span>
+<span id="cb6-3"><a href="build.html#cb6-3"></a><span class="st">name varchar(30) NOT NULL,</span></span>
+<span id="cb6-4"><a href="build.html#cb6-4"></a><span class="st">id_number varchar(8),</span></span>
+<span id="cb6-5"><a href="build.html#cb6-5"></a><span class="st">sex char(1),</span></span>
+<span id="cb6-6"><a href="build.html#cb6-6"></a><span class="st">year_born char(4),</span></span>
+<span id="cb6-7"><a href="build.html#cb6-7"></a><span class="st">year_death char(4),</span></span>
+<span id="cb6-8"><a href="build.html#cb6-8"></a><span class="st">mother_idno varchar(8),</span></span>
+<span id="cb6-9"><a href="build.html#cb6-9"></a><span class="st">father_idno varchar(8),</span></span>
+<span id="cb6-10"><a href="build.html#cb6-10"></a><span class="st">PRIMARY KEY (name)</span></span>
+<span id="cb6-11"><a href="build.html#cb6-11"></a><span class="st">);&quot;</span>)</span>
+<span id="cb6-12"><a href="build.html#cb6-12"></a></span>
+<span id="cb6-13"><a href="build.html#cb6-13"></a><span class="co">#Make table for Fecal Samples</span></span>
+<span id="cb6-14"><a href="build.html#cb6-14"></a><span class="kw">dbExecute</span>(sheep, <span class="st">&quot;CREATE TABLE fecal (</span></span>
+<span id="cb6-15"><a href="build.html#cb6-15"></a><span class="st">sample_id varchar(10),</span></span>
+<span id="cb6-16"><a href="build.html#cb6-16"></a><span class="st">name varchar(30) NOT NULL,</span></span>
+<span id="cb6-17"><a href="build.html#cb6-17"></a><span class="st">date varchar(8),</span></span>
+<span id="cb6-18"><a href="build.html#cb6-18"></a><span class="st">time varchar(5),</span></span>
+<span id="cb6-19"><a href="build.html#cb6-19"></a><span class="st">FOREIGN KEY (name) REFERENCES individuals(name)</span></span>
+<span id="cb6-20"><a href="build.html#cb6-20"></a><span class="st">);&quot;</span>)</span>
+<span id="cb6-21"><a href="build.html#cb6-21"></a></span>
+<span id="cb6-22"><a href="build.html#cb6-22"></a><span class="co">#Make table for vigilance observations</span></span>
+<span id="cb6-23"><a href="build.html#cb6-23"></a><span class="kw">dbExecute</span>(sheep, <span class="st">&quot;CREATE TABLE vigilance (</span></span>
+<span id="cb6-24"><a href="build.html#cb6-24"></a><span class="st">observation_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb6-25"><a href="build.html#cb6-25"></a><span class="st">name varchar(30) NOT NULL,</span></span>
+<span id="cb6-26"><a href="build.html#cb6-26"></a><span class="st">date varchar(8),</span></span>
+<span id="cb6-27"><a href="build.html#cb6-27"></a><span class="st">time varchar(5),</span></span>
+<span id="cb6-28"><a href="build.html#cb6-28"></a><span class="st">FOREIGN KEY (name) REFERENCES individuals(name)</span></span>
+<span id="cb6-29"><a href="build.html#cb6-29"></a><span class="st">);&quot;</span>)</span>
+<span id="cb6-30"><a href="build.html#cb6-30"></a></span>
+<span id="cb6-31"><a href="build.html#cb6-31"></a><span class="co">#Make table for all observers</span></span>
+<span id="cb6-32"><a href="build.html#cb6-32"></a><span class="kw">dbExecute</span>(sheep, <span class="st">&quot;CREATE TABLE observers (</span></span>
+<span id="cb6-33"><a href="build.html#cb6-33"></a><span class="st">observer_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb6-34"><a href="build.html#cb6-34"></a><span class="st">full_name char(30),</span></span>
+<span id="cb6-35"><a href="build.html#cb6-35"></a><span class="st">initials char(3),</span></span>
+<span id="cb6-36"><a href="build.html#cb6-36"></a><span class="st">year_start integer(4),</span></span>
+<span id="cb6-37"><a href="build.html#cb6-37"></a><span class="st">year_stop integer(4)</span></span>
+<span id="cb6-38"><a href="build.html#cb6-38"></a><span class="st">);&quot;</span>)</span>
+<span id="cb6-39"><a href="build.html#cb6-39"></a></span>
+<span id="cb6-40"><a href="build.html#cb6-40"></a><span class="co">#Make table for census data</span></span>
+<span id="cb6-41"><a href="build.html#cb6-41"></a><span class="kw">dbExecute</span>(sheep, <span class="st">&quot;CREATE TABLE census (</span></span>
+<span id="cb6-42"><a href="build.html#cb6-42"></a><span class="st">group_record_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb6-43"><a href="build.html#cb6-43"></a><span class="st">observed_group_no varchar(3) NOT NULL,</span></span>
+<span id="cb6-44"><a href="build.html#cb6-44"></a><span class="st">date varchar(8),</span></span>
+<span id="cb6-45"><a href="build.html#cb6-45"></a><span class="st">time varchar(4),</span></span>
+<span id="cb6-46"><a href="build.html#cb6-46"></a><span class="st">obs_init char(3),</span></span>
+<span id="cb6-47"><a href="build.html#cb6-47"></a><span class="st">group_size integer(3)</span></span>
+<span id="cb6-48"><a href="build.html#cb6-48"></a><span class="st">);&quot;</span>)</span>
+<span id="cb6-49"><a href="build.html#cb6-49"></a></span>
+<span id="cb6-50"><a href="build.html#cb6-50"></a><span class="co">#Removed these for now until I can get more data for the observers table</span></span>
+<span id="cb6-51"><a href="build.html#cb6-51"></a><span class="co">#observer_id integer(3),</span></span>
+<span id="cb6-52"><a href="build.html#cb6-52"></a><span class="co">#FOREIGN KEY (observer_id) REFERENCES observers(observer_id)</span></span>
+<span id="cb6-53"><a href="build.html#cb6-53"></a></span>
+<span id="cb6-54"><a href="build.html#cb6-54"></a><span class="co">#Make table for Group Locations</span></span>
+<span id="cb6-55"><a href="build.html#cb6-55"></a><span class="kw">dbExecute</span>(sheep, <span class="st">&quot;CREATE TABLE group_locations (</span></span>
+<span id="cb6-56"><a href="build.html#cb6-56"></a><span class="st">location_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb6-57"><a href="build.html#cb6-57"></a><span class="st">group_record_id INTEGER(6),</span></span>
+<span id="cb6-58"><a href="build.html#cb6-58"></a><span class="st">map varchar(10),</span></span>
+<span id="cb6-59"><a href="build.html#cb6-59"></a><span class="st">latitude varchar(8),</span></span>
+<span id="cb6-60"><a href="build.html#cb6-60"></a><span class="st">longitude varchar(8),</span></span>
+<span id="cb6-61"><a href="build.html#cb6-61"></a><span class="st">FOREIGN KEY (group_record_id) REFERENCES census(group_record_id)</span></span>
+<span id="cb6-62"><a href="build.html#cb6-62"></a><span class="st">);&quot;</span>)</span>
+<span id="cb6-63"><a href="build.html#cb6-63"></a></span>
+<span id="cb6-64"><a href="build.html#cb6-64"></a><span class="co">#Make table for Group Composition</span></span>
+<span id="cb6-65"><a href="build.html#cb6-65"></a><span class="kw">dbExecute</span>(sheep, <span class="st">&quot;CREATE TABLE group_composition (</span></span>
+<span id="cb6-66"><a href="build.html#cb6-66"></a><span class="st">observation_id  INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb6-67"><a href="build.html#cb6-67"></a><span class="st">group_record_id INTEGER(6),</span></span>
+<span id="cb6-68"><a href="build.html#cb6-68"></a><span class="st">name varchar(30),</span></span>
+<span id="cb6-69"><a href="build.html#cb6-69"></a><span class="st">lamb_status varchar(5),</span></span>
+<span id="cb6-70"><a href="build.html#cb6-70"></a><span class="st">FOREIGN KEY (group_record_id) REFERENCES census(group_record_id),</span></span>
+<span id="cb6-71"><a href="build.html#cb6-71"></a><span class="st">FOREIGN KEY (name) REFERENCES individuals(name)</span></span>
+<span id="cb6-72"><a href="build.html#cb6-72"></a><span class="st">);&quot;</span>)</span>
+<span id="cb6-73"><a href="build.html#cb6-73"></a></span>
+<span id="cb6-74"><a href="build.html#cb6-74"></a><span class="co">#Drop table if need to change</span></span>
+<span id="cb6-75"><a href="build.html#cb6-75"></a><span class="kw">dbExecute</span>(sheep, <span class="st">&quot;DROP TABLE census&quot;</span>);</span></code></pre></div>
+</div>
+<div id="importing-data" class="section level2">
+<h2><span class="header-section-number">2.3</span> Importing Data</h2>
+<p>Now that I have all of my tables built, I will import my data into them.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="build.html#cb7-1"></a><span class="co">#Individuals ----</span></span>
+<span id="cb7-2"><a href="build.html#cb7-2"></a><span class="co">#Bring in data</span></span>
+<span id="cb7-3"><a href="build.html#cb7-3"></a>individuals_ &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../tables/Individuals.csv&quot;</span>)</span>
+<span id="cb7-4"><a href="build.html#cb7-4"></a><span class="kw">head</span>(individuals)</span>
+<span id="cb7-5"><a href="build.html#cb7-5"></a><span class="kw">names</span>(individuals_)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;id_number&quot;</span></span>
+<span id="cb7-6"><a href="build.html#cb7-6"></a></span>
+<span id="cb7-7"><a href="build.html#cb7-7"></a>individuals &lt;-<span class="st"> </span>individuals_ <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-8"><a href="build.html#cb7-8"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>X)</span>
+<span id="cb7-9"><a href="build.html#cb7-9"></a></span>
+<span id="cb7-10"><a href="build.html#cb7-10"></a><span class="co">#Change names</span></span>
+<span id="cb7-11"><a href="build.html#cb7-11"></a><span class="kw">names</span>(individuals)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;X&quot;</span></span>
+<span id="cb7-12"><a href="build.html#cb7-12"></a><span class="kw">names</span>(individuals)[<span class="dv">4</span>] &lt;-<span class="st"> &quot;year_born&quot;</span></span>
+<span id="cb7-13"><a href="build.html#cb7-13"></a><span class="kw">names</span>(individuals)[<span class="dv">5</span>] &lt;-<span class="st"> &quot;year_death&quot;</span></span>
+<span id="cb7-14"><a href="build.html#cb7-14"></a><span class="kw">names</span>(individuals)[<span class="dv">7</span>] &lt;-<span class="st"> &quot;mother_idno&quot;</span></span>
+<span id="cb7-15"><a href="build.html#cb7-15"></a><span class="kw">names</span>(individuals)[<span class="dv">7</span>] &lt;-<span class="st"> &quot;father_idno&quot;</span></span>
+<span id="cb7-16"><a href="build.html#cb7-16"></a></span>
+<span id="cb7-17"><a href="build.html#cb7-17"></a><span class="co">#Fill table</span></span>
+<span id="cb7-18"><a href="build.html#cb7-18"></a><span class="kw">dbWriteTable</span>(sheep, <span class="st">&quot;individuals&quot;</span>, individuals, <span class="dt">append =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb7-19"><a href="build.html#cb7-19"></a></span>
+<span id="cb7-20"><a href="build.html#cb7-20"></a><span class="co">#Check that it worked</span></span>
+<span id="cb7-21"><a href="build.html#cb7-21"></a><span class="kw">dbGetQuery</span>(<span class="dt">conn =</span> sheep, </span>
+<span id="cb7-22"><a href="build.html#cb7-22"></a>           <span class="dt">statement =</span> <span class="st">&quot;SELECT *</span></span>
+<span id="cb7-23"><a href="build.html#cb7-23"></a><span class="st">           FROM individuals</span></span>
+<span id="cb7-24"><a href="build.html#cb7-24"></a><span class="st">           LIMIT 10&quot;</span>)</span>
+<span id="cb7-25"><a href="build.html#cb7-25"></a></span>
+<span id="cb7-26"><a href="build.html#cb7-26"></a><span class="co">#Set connection</span></span>
+<span id="cb7-27"><a href="build.html#cb7-27"></a>individuals &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(sheep, <span class="st">&quot;SELECT * FROM individuals;&quot;</span>)</span>
+<span id="cb7-28"><a href="build.html#cb7-28"></a></span>
+<span id="cb7-29"><a href="build.html#cb7-29"></a></span>
+<span id="cb7-30"><a href="build.html#cb7-30"></a><span class="co">#Fecal ----</span></span>
+<span id="cb7-31"><a href="build.html#cb7-31"></a><span class="co">#Bring in data</span></span>
+<span id="cb7-32"><a href="build.html#cb7-32"></a>fecal_full &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../tables/NBR Fecal Samples Fall 2019.csv&quot;</span>)</span>
+<span id="cb7-33"><a href="build.html#cb7-33"></a><span class="kw">head</span>(fecal_full)</span>
+<span id="cb7-34"><a href="build.html#cb7-34"></a>fecal &lt;-<span class="st"> </span>fecal_full[ , <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>)]</span>
+<span id="cb7-35"><a href="build.html#cb7-35"></a></span>
+<span id="cb7-36"><a href="build.html#cb7-36"></a><span class="co">#Change names</span></span>
+<span id="cb7-37"><a href="build.html#cb7-37"></a><span class="kw">names</span>(fecal)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;sample_id&quot;</span></span>
+<span id="cb7-38"><a href="build.html#cb7-38"></a><span class="kw">names</span>(fecal)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;name&quot;</span></span>
+<span id="cb7-39"><a href="build.html#cb7-39"></a><span class="kw">names</span>(fecal)[<span class="dv">3</span>] &lt;-<span class="st"> &quot;date&quot;</span></span>
+<span id="cb7-40"><a href="build.html#cb7-40"></a><span class="kw">names</span>(fecal)[<span class="dv">4</span>] &lt;-<span class="st"> &quot;time&quot;</span></span>
+<span id="cb7-41"><a href="build.html#cb7-41"></a><span class="kw">head</span>(fecal)</span>
+<span id="cb7-42"><a href="build.html#cb7-42"></a></span>
+<span id="cb7-43"><a href="build.html#cb7-43"></a><span class="co">#Fill table</span></span>
+<span id="cb7-44"><a href="build.html#cb7-44"></a><span class="kw">dbWriteTable</span>(sheep, <span class="st">&quot;fecal&quot;</span>, fecal, <span class="dt">append =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb7-45"><a href="build.html#cb7-45"></a></span>
+<span id="cb7-46"><a href="build.html#cb7-46"></a><span class="co">#Check that it worked</span></span>
+<span id="cb7-47"><a href="build.html#cb7-47"></a><span class="kw">dbGetQuery</span>(<span class="dt">conn =</span> sheep, </span>
+<span id="cb7-48"><a href="build.html#cb7-48"></a>           <span class="dt">statement =</span> <span class="st">&quot;SELECT *</span></span>
+<span id="cb7-49"><a href="build.html#cb7-49"></a><span class="st">           FROM fecal</span></span>
+<span id="cb7-50"><a href="build.html#cb7-50"></a><span class="st">           LIMIT 10&quot;</span>)</span>
+<span id="cb7-51"><a href="build.html#cb7-51"></a></span>
+<span id="cb7-52"><a href="build.html#cb7-52"></a><span class="co">#Set connection</span></span>
+<span id="cb7-53"><a href="build.html#cb7-53"></a>fecal &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(sheep, <span class="st">&quot;SELECT * FROM fecal;&quot;</span>)</span>
+<span id="cb7-54"><a href="build.html#cb7-54"></a></span>
+<span id="cb7-55"><a href="build.html#cb7-55"></a><span class="co">#Cen, loc, comp ----</span></span>
+<span id="cb7-56"><a href="build.html#cb7-56"></a><span class="co">#Bring in data to split for census, locations, and composition</span></span>
+<span id="cb7-57"><a href="build.html#cb7-57"></a>BRCEN &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../Raw_Data/census_withLatLong_20200511.csv&quot;</span>)</span>
+<span id="cb7-58"><a href="build.html#cb7-58"></a><span class="kw">head</span>(BRCEN)</span>
+<span id="cb7-59"><a href="build.html#cb7-59"></a><span class="kw">names</span>(BRCEN)</span>
+<span id="cb7-60"><a href="build.html#cb7-60"></a></span>
+<span id="cb7-61"><a href="build.html#cb7-61"></a><span class="co">#Census ----</span></span>
+<span id="cb7-62"><a href="build.html#cb7-62"></a><span class="co">#subset for census table</span></span>
+<span id="cb7-63"><a href="build.html#cb7-63"></a>census &lt;-<span class="st"> </span>BRCEN[ , <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">14</span>)]</span>
+<span id="cb7-64"><a href="build.html#cb7-64"></a><span class="kw">head</span>(census)</span>
+<span id="cb7-65"><a href="build.html#cb7-65"></a></span>
+<span id="cb7-66"><a href="build.html#cb7-66"></a><span class="co">#Change names</span></span>
+<span id="cb7-67"><a href="build.html#cb7-67"></a><span class="kw">names</span>(census)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;observed_group_no&quot;</span></span>
+<span id="cb7-68"><a href="build.html#cb7-68"></a><span class="kw">names</span>(census)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;time&quot;</span></span>
+<span id="cb7-69"><a href="build.html#cb7-69"></a><span class="kw">names</span>(census)[<span class="dv">5</span>] &lt;-<span class="st"> &quot;group_size&quot;</span></span>
+<span id="cb7-70"><a href="build.html#cb7-70"></a><span class="kw">names</span>(census)[<span class="dv">4</span>] &lt;-<span class="st"> &quot;obs_init&quot;</span></span>
+<span id="cb7-71"><a href="build.html#cb7-71"></a></span>
+<span id="cb7-72"><a href="build.html#cb7-72"></a><span class="co">#Fill table</span></span>
+<span id="cb7-73"><a href="build.html#cb7-73"></a><span class="kw">dbWriteTable</span>(sheep, <span class="st">&quot;census&quot;</span>, census, <span class="dt">append =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb7-74"><a href="build.html#cb7-74"></a></span>
+<span id="cb7-75"><a href="build.html#cb7-75"></a><span class="co">#Check that it worked</span></span>
+<span id="cb7-76"><a href="build.html#cb7-76"></a><span class="kw">dbGetQuery</span>(<span class="dt">conn =</span> sheep, </span>
+<span id="cb7-77"><a href="build.html#cb7-77"></a>           <span class="dt">statement =</span> <span class="st">&quot;SELECT *</span></span>
+<span id="cb7-78"><a href="build.html#cb7-78"></a><span class="st">           FROM census</span></span>
+<span id="cb7-79"><a href="build.html#cb7-79"></a><span class="st">           LIMIT 10&quot;</span>)</span>
+<span id="cb7-80"><a href="build.html#cb7-80"></a><span class="co">#Excellent.</span></span>
+<span id="cb7-81"><a href="build.html#cb7-81"></a><span class="co">#Now I need to do some wrangling to get it specific to the group</span></span>
+<span id="cb7-82"><a href="build.html#cb7-82"></a><span class="co">#I need to use it as a primary key in the next two tables.</span></span>
+<span id="cb7-83"><a href="build.html#cb7-83"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb7-84"><a href="build.html#cb7-84"></a></span>
+<span id="cb7-85"><a href="build.html#cb7-85"></a>census &lt;-<span class="st"> </span>BRCEN <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-86"><a href="build.html#cb7-86"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-87"><a href="build.html#cb7-87"></a><span class="st">  </span><span class="kw">select</span>(groupid, time, date, obs) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-88"><a href="build.html#cb7-88"></a><span class="st">  </span><span class="kw">group_by</span>(date, groupid, time, obs) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-89"><a href="build.html#cb7-89"></a><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-90"><a href="build.html#cb7-90"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">grp_size =</span> n) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-91"><a href="build.html#cb7-91"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(groupid)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-92"><a href="build.html#cb7-92"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>n)</span>
+<span id="cb7-93"><a href="build.html#cb7-93"></a></span>
+<span id="cb7-94"><a href="build.html#cb7-94"></a><span class="co">#Set connection</span></span>
+<span id="cb7-95"><a href="build.html#cb7-95"></a>census &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(sheep, <span class="st">&quot;SELECT * FROM census;&quot;</span>)</span>
+<span id="cb7-96"><a href="build.html#cb7-96"></a></span>
+<span id="cb7-97"><a href="build.html#cb7-97"></a><span class="co">#Locations ----</span></span>
+<span id="cb7-98"><a href="build.html#cb7-98"></a><span class="co">#Subset for group locations</span></span>
+<span id="cb7-99"><a href="build.html#cb7-99"></a>locations &lt;-<span class="st"> </span>BRCEN[ , <span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">19</span>)]</span>
+<span id="cb7-100"><a href="build.html#cb7-100"></a><span class="kw">head</span>(locations)</span>
+<span id="cb7-101"><a href="build.html#cb7-101"></a></span>
+<span id="cb7-102"><a href="build.html#cb7-102"></a><span class="co">#Change names</span></span>
+<span id="cb7-103"><a href="build.html#cb7-103"></a><span class="kw">names</span>(locations)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;latitude&quot;</span></span>
+<span id="cb7-104"><a href="build.html#cb7-104"></a><span class="kw">names</span>(locations)[<span class="dv">3</span>] &lt;-<span class="st"> &quot;longitude&quot;</span></span>
+<span id="cb7-105"><a href="build.html#cb7-105"></a></span>
+<span id="cb7-106"><a href="build.html#cb7-106"></a><span class="co">#Fill table</span></span>
+<span id="cb7-107"><a href="build.html#cb7-107"></a><span class="kw">dbWriteTable</span>(sheep, <span class="st">&quot;group_locations&quot;</span>, locations, <span class="dt">append =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb7-108"><a href="build.html#cb7-108"></a></span>
+<span id="cb7-109"><a href="build.html#cb7-109"></a><span class="co">#Check that it worked</span></span>
+<span id="cb7-110"><a href="build.html#cb7-110"></a><span class="kw">dbGetQuery</span>(<span class="dt">conn =</span> sheep, </span>
+<span id="cb7-111"><a href="build.html#cb7-111"></a>           <span class="dt">statement =</span> <span class="st">&quot;SELECT *</span></span>
+<span id="cb7-112"><a href="build.html#cb7-112"></a><span class="st">           FROM group_locations</span></span>
+<span id="cb7-113"><a href="build.html#cb7-113"></a><span class="st">           LIMIT 10&quot;</span>)</span>
+<span id="cb7-114"><a href="build.html#cb7-114"></a></span>
+<span id="cb7-115"><a href="build.html#cb7-115"></a><span class="co">#Set connection</span></span>
+<span id="cb7-116"><a href="build.html#cb7-116"></a>group_locations &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(sheep, <span class="st">&quot;SELECT * FROM locations;&quot;</span>)</span>
+<span id="cb7-117"><a href="build.html#cb7-117"></a></span>
+<span id="cb7-118"><a href="build.html#cb7-118"></a><span class="co">#Composition ----</span></span>
+<span id="cb7-119"><a href="build.html#cb7-119"></a><span class="co">#Subset for individuals in each group</span></span>
+<span id="cb7-120"><a href="build.html#cb7-120"></a><span class="kw">names</span>(BRCEN)</span>
+<span id="cb7-121"><a href="build.html#cb7-121"></a>group_composition &lt;-<span class="st"> </span>composition[ , <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">6</span>)]</span>
+<span id="cb7-122"><a href="build.html#cb7-122"></a></span>
+<span id="cb7-123"><a href="build.html#cb7-123"></a><span class="co">#Change names</span></span>
+<span id="cb7-124"><a href="build.html#cb7-124"></a><span class="kw">names</span>(composition)[<span class="dv">5</span>] &lt;-<span class="st"> &quot;name&quot;</span></span>
+<span id="cb7-125"><a href="build.html#cb7-125"></a><span class="kw">names</span>(composition)[<span class="dv">6</span>] &lt;-<span class="st"> &quot;lamb_status&quot;</span></span>
+<span id="cb7-126"><a href="build.html#cb7-126"></a></span>
+<span id="cb7-127"><a href="build.html#cb7-127"></a><span class="co">#Rearrange to match census</span></span>
+<span id="cb7-128"><a href="build.html#cb7-128"></a>composition &lt;-<span class="st"> </span>BRCEN <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-129"><a href="build.html#cb7-129"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-130"><a href="build.html#cb7-130"></a><span class="st">  </span><span class="kw">select</span>(groupid, time, date, obs, fulltag_clean, lamb_present) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-131"><a href="build.html#cb7-131"></a><span class="st">  </span><span class="kw">group_by</span>(date, groupid, time, obs)</span>
+<span id="cb7-132"><a href="build.html#cb7-132"></a></span>
+<span id="cb7-133"><a href="build.html#cb7-133"></a><span class="co">#Fill table</span></span>
+<span id="cb7-134"><a href="build.html#cb7-134"></a><span class="kw">dbWriteTable</span>(sheep, <span class="st">&quot;group_composition&quot;</span>, group_composition, <span class="dt">append =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb7-135"><a href="build.html#cb7-135"></a></span>
+<span id="cb7-136"><a href="build.html#cb7-136"></a><span class="co">#Check that it worked</span></span>
+<span id="cb7-137"><a href="build.html#cb7-137"></a><span class="kw">dbGetQuery</span>(<span class="dt">conn =</span> sheep, </span>
+<span id="cb7-138"><a href="build.html#cb7-138"></a>           <span class="dt">statement =</span> <span class="st">&quot;SELECT *</span></span>
+<span id="cb7-139"><a href="build.html#cb7-139"></a><span class="st">           FROM group_composition</span></span>
+<span id="cb7-140"><a href="build.html#cb7-140"></a><span class="st">           LIMIT 10&quot;</span>)</span>
+<span id="cb7-141"><a href="build.html#cb7-141"></a></span>
+<span id="cb7-142"><a href="build.html#cb7-142"></a><span class="co">#Set connection</span></span>
+<span id="cb7-143"><a href="build.html#cb7-143"></a>group_composition &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(sheep, <span class="st">&quot;SELECT * FROM group_composition;&quot;</span>)</span>
+<span id="cb7-144"><a href="build.html#cb7-144"></a></span>
+<span id="cb7-145"><a href="build.html#cb7-145"></a><span class="co">#Need to go back through and solidify tables in db, specifically</span></span>
+<span id="cb7-146"><a href="build.html#cb7-146"></a><span class="co">#census to use it to build the locations table based on the unique</span></span>
+<span id="cb7-147"><a href="build.html#cb7-147"></a><span class="co">#group record id. composition needs this too.</span></span></code></pre></div>
+<p>This assignment shows my work flow for building my database and getting used to Rmarkdown. The assignment, along with my Assignment 7 bookdown, build to the final project.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="parents.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Proescholdt_Thesis_Bookdown.pdf", "Proescholdt_Thesis_Bookdown.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

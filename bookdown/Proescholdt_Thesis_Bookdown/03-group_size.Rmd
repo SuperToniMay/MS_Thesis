@@ -1,0 +1,23 @@
+# Group Size {#grp_size}
+
+One of my main questions is about group size, and how it scales with population. To investigate this, I will first need to examine the group size.
+
+```{r group size, eval = TRUE, echo = TRUE}
+#What was the biggest group observed and when?
+census %>%
+  as_tibble %>% 
+  select(group_size, date) %>%
+  group_by(group_size) %>% 
+  arrange(desc(group_size))
+  
+```
+It looks like the largest group was observed in June of 2014, and it was 85 individuals!
+
+I am curious about what group size is observed most frequently and what the average group size is for the whole dataset.
+
+```{r mode group}
+
+```
+
+
+Now, I want to know more about how group size is related to other factors like population size and sex ratio. To start exploring this, I want to look into when groups of different sizes occur and how that has changed over the 40 years in this dataset.
