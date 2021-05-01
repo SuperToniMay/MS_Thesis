@@ -1,0 +1,22 @@
+# Deaths per Year
+
+```{r sex ratio setup, eval = FALSE, echo = FALSE}
+group_composition %>% 
+  as_tibble() %>% 
+  left_join(individuals, by = "name") %>% 
+  select(-observation_id, -lamb_status, -mother_idno, -father_idno)
+```
+
+
+```{r deaths per year, echo = TRUE, eval = TRUE}
+individuals %>% 
+  as_tibble() %>% 
+  group_by(year_death) %>% 
+  tally() %>% 
+  ggplot(aes(x = year_death, y = n)) + 
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  labs(title = "Recorded deaths per year", x = "year", y = "count")
+
+```
+2016 was the year of the mass die-off, so I would expect that year to have the highest deaths. I will have to add in presumed death year based on date last seen to get rid of all of those NAs.

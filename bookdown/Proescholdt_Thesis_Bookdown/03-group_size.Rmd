@@ -1,6 +1,6 @@
 # Group Size {#grp_size}
 
-One of my main questions is about group size, and how it scales with population. To investigate this, I will first need to examine the group size.
+One of my main questions is about group size: whether there is a characteristic group size, when large groups form, and how typical group size scales with population. Large groups and flow between groups are important for disease transmission, and this dataset provides a rare opportunity to understand group sizes in bighorn sheep.
 
 ```{r group size, eval = TRUE, echo = TRUE}
 #What was the biggest group observed and when?
@@ -13,11 +13,59 @@ census %>%
 ```
 It looks like the largest group was observed in June of 2014, and it was 85 individuals!
 
+## Mode of Group size
+
 I am curious about what group size is observed most frequently and what the average group size is for the whole dataset.
 
 ```{r mode group}
+mode_fun <- function(x) {
+     mode0 <- names(which.max(table(x)))
+     if(is.numeric(x)) return(as.numeric(mode0))
+     mode0
+}
+mode_fun(census$group_size)
 
+```
+The most common group size is 1! That is interesting to me. Now I want to see how often various group sizes occur, and if the smaller groups are more often observed than larger ones.
+
+```{r common group sizes, echo=TRUE, eval=FALSE}
+census %>% 
+  as.tibble %>% 
+  select(date, group_size) %>% 
+  group_by(group_size) %>% 
+  tally() %>% 
+  arrange(desc(n))
+
+```
+Interesting!! The frequency of observed group sizes descends in order from 1 to 18! I expected there would be a group size that was more common, like 9 or 12. I also would have expected that our observational bias would be against the smaller groups because they would be easier to miss. I guess that's not so.
+
+## Average Group Size
+
+```{r overall avg, echo = TRUE, eval = FALSE}
+mean(census$group_size)
+```
+This is the average group size over the entire dataset, which doesn't actually tell us that much. So. I'm going to look at how this has changed over the years.
+
+```{r grps_by_year attempt, echo = TRUE, eval =FALSE}
+library(lubridate)
+
+grps_by_yr <- census %>% 
+  as_tibble() %>% 
+  mutate(ldate = mdy(census$date, tz = "US/Mountain")) %>% 
+  select(ldate, group_size) %>% 
+  group_by(year(ldate), group_size) %>% 
+  tally() %>% 
+  mutate(mean_per_year = mean(group_size)) %>% 
+  filter(!is.na(ldate))
+  rename(year = year(ldate))
+
+grps_by_yr %>% 
+  ggplot(mapping = aes(x = year(ldate), 
+                       y = mean_per_year,
+                       fill = year(ldate))) +
+  geom_bar()
+  
 ```
 
 
-Now, I want to know more about how group size is related to other factors like population size and sex ratio. To start exploring this, I want to look into when groups of different sizes occur and how that has changed over the 40 years in this dataset.
+I want to know more about how group size is related to other factors like population size and sex ratio. To start exploring this, I want to look into when groups of different sizes occur and how that has changed over the 40 years in this dataset.

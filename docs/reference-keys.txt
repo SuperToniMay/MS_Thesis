@@ -10,7 +10,6 @@ building-the-tables
 importing-data
 parents
 grp_size
-population
-example-one
-example-two
-final-words
+mode-of-group-size
+average-group-size
+deaths-per-year
