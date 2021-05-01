@@ -3,8 +3,6 @@
 .RData
 .Ruserdata
 Raw_Data/
-*.png
-*.jpg
 /Figures/
 /Results/
 /Proposal/
